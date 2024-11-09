@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Coditron_OTPVerification::css/otp.css" />
+    </head>
+    <referenceContainer name="after.body.start">
+        <block class="Magento\Framework\View\Element\Template" name="otp_modal_popup_template" template="Coditron_OTPVerification::otpModalPopupTemplate.phtml">
+        </block>
+        <block class="Magento\Framework\View\Element\Template" name="otp_loader" template="Coditron_OTPVerification::otpLoaderTemplate.phtml">
+        </block>
+        <block class="Magento\Framework\View\Element\Template" name="guest_otp_loader" template="Coditron_OTPVerification::firebaseOtpLoaderTemplate.phtml" ifconfig="otp_login/generalsettings/otp_enable">
+            <arguments>
+                <argument name="view_model" xsi:type="object">Coditron\OTPVerification\ViewModel\HelperViewModel</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+   
+</page>

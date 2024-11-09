@@ -1,0 +1,37 @@
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+<!--@subject {{trans "OTP verification"}} @-->
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+<!--@vars {"var name":"name","var password":"password", "var time_to_expire":"time_to_expire"} @-->
+{{template config_path="design/email/header_template"}}
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+<tr>
+    <td align="center" valign="top" style="padding:20px 0 20px 0">
+        <!-- [ header starts here] -->
+        <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+        <!-- [ middle starts here] -->
+            <tr>
+                <td valign="top">
+                    <h3 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">{{trans "Hello"}} {{var name}},</h3>
+                    <p>{{trans "Your one time verification code is "}} <b>{{var password}}</b>.</p>
+                    <p>{{trans "Enter the verification code to complete the login process."}}</p>
+                    {{depend time_to_expire}}
+                        <p>{{trans "The OTP is valid for <span class='time-to-expire'>%time_to_expire</span>." time_to_expire=$time_to_expire |raw}}</p>
+                    {{/depend}}
+                    <p>{{trans "Thank You"}}</p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>

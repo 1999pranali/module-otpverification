@@ -1,0 +1,317 @@
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+ 
+.CT-otp-loading-mask {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.62);
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.CT-otp-loader {
+    background: url("../images/ajax-loader.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 32px;
+    left: 50%;
+    margin-left: -16px;
+    margin-top: -16px;
+    position: absolute;
+    top: 50%;
+    width: 32px;
+}
+
+.CT-otp-display-none,
+.hide,
+.display-none {
+    display: none !important;
+}
+
+.otp_modal_popup,
+.paypalOtpModal,
+.otpModalCustomer {
+    text-align: center;
+    margin: auto;
+    max-width: 850px;
+}
+
+.checkout-index-index .otp_modal_popup.modal-popup .modal-inner-wrap,
+.checkout-index-index .otpModalCustomer.modal-popup .modal-inner-wrap,
+.checkout-index-index .paypalOtpModal.modal-popup .modal-inner-wrap {
+    margin: 5rem auto;
+    width: 75%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.otp_modal_popup .otp_expire_message {
+    color: #e82e2e;
+}
+
+.otp_modal_popup .error {
+    color: #e82e2e;
+    background-color: yellow;
+}
+
+.otp_modal_popup .success {
+    color: #006400;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.otp_modal_popup .validate_error > span {
+    color: #e82e2e;
+    background-color: yellow;
+}
+
+.otp_popup>*:not(:empty) {
+    margin: 2rem auto;
+}
+
+.otp_action {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+input.user_otp,
+input.user_otp_checkout {
+    height: 32px;
+    margin-right: 1rem;
+}
+
+button.submit_otp {
+    margin: 0;
+}
+
+/* Otp Footer start */
+.otp_modal_popup footer.modal-footer,
+.paypalOtpModal footer.modal-footer,
+.otpModalCustomer footer.modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
+}
+
+button.otp_resend,
+button.otpResendBtn,
+button.otpContainer-resendBtn {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    font-weight: 400;
+    line-height: 1.42857143;
+    font-size: 1.4rem;
+    color: #006bb4;
+}
+
+button.otp_resend:hover,
+button.otpResendBtn:hover,
+button.otpContainer-resendBtn:hover {
+    text-decoration: underline;
+}
+
+button.otp_resend:active,
+button.otpResendBtn:active,
+button.otpContainer-resendBtn:active {
+    color: #ff5501;
+}
+/* Otp Footer end  */
+
+
+@media screen and (max-width: 500px) {
+    .otp_popup .otp_action {
+        flex-direction: column;
+    }
+    .otp_popup input.user_otp,
+    .otp_popup input.user_otp_checkout {
+        margin: 0;
+        margin-bottom: 2rem;
+    }
+    button.submit_otp {
+        margin-bottom: 2rem;
+    }
+}
+
+
+/* Otp popup widget start */
+
+.disablePaypalDiv {
+    opacity: 0.5;
+    pointer-events: none
+}
+
+.paypalOtpBtn {
+    color: #e82e2e;
+    text-align: center;
+    font-weight: bold;
+    user-select: none;
+    cursor: pointer;
+}
+
+.CT-otp-required::after {
+    content: '*';
+    color: #e02b27;
+    font-size: 1.2rem;
+    margin: 0 0 0 5px;
+}
+
+.guestDetailsContainer-form-container,
+.otpContainer-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.guestDetailsContainer-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.guestDetailsContainer-form>.addon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.guestDetailsContainer-form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.guestDetailsContainer-form-group>label {
+    margin: 0 0 8px;
+    font-weight: 600;
+}
+
+.guestDetailsContainer-submitBtn {
+    margin-bottom: 2rem;
+}
+
+.optContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.otpContainer>div {
+    margin-top: 2rem;
+}
+
+.otpContainer-form-container>* {
+    margin-bottom: 2rem;
+}
+
+.otpContainer-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.otpContainer-form>.addon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.otpContainer-input {
+    margin-right: 1rem;
+}
+
+@media screen and (max-width: 400px) {
+    .otpContainer-form>.addon {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .otpContainer-input {
+        max-width: auto;
+        margin-bottom: 2rem;
+        margin-right: 0;
+    }
+}
+
+.otpContainer-expireMessage {
+    color: #e02b27;
+}
+
+.otpContainer-responseMessage {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.otpContainer-responseMessage.error {
+    color: #e02b27;
+    background-color: yellow;
+}
+
+.otpContainer-responseMessage.success {
+    color: #006400;
+}
+
+.guestDetailsContainer-validationError,
+.otpContainer-validationError {
+    color: #e02b27;
+    background-color: yellow;
+    margin-bottom: 2rem;
+}
+/* Otp popup widget end */
+
+
+.field.defaultphonenumber>label {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.password-strength-meter, .input-text, input#pass, input#password {
+    z-index: unset !important;
+}
+span#otp-countdown {
+    color: #e82e2e;
+}
+div#otp-expire-message {
+    color: #e82e2e;
+}
+.otpContainer {
+    padding-top: 10px;
+}

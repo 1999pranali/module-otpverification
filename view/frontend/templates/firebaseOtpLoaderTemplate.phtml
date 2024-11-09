@@ -1,0 +1,84 @@
+<?php
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+
+$viewModel = $block->getViewModel();
+$otpHelper = $viewModel->helper(Coditron\OTPVerification\Helper\Data::class);
+$request = $block->getRequest();
+$fullActionName = $request->getFullActionName();
+$isCheckoutPage = $fullActionName == 'checkout_index_index' ? true : false;
+
+$otpModalConfig = $otpHelper->getOtpModalConfig();
+$customerHelper = $viewModel->helper(Coditron\OTPVerification\Helper\Customer::class);
+$usernameType = $customerHelper->getCurrentUsernameType();
+$usernameFieldConfig = $customerHelper->getLoginUsernameFieldConfigByType($usernameType);
+$testModeScript = "";
+if ($otpHelper->getTestModeStatus()) {
+    $testModeScript = "defaultAuth.settings.appVerificationDisabledForTesting = true;";
+}
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<?php
+if ($otpModalConfig["forOthersSendOtpVia"] != "email" && $otpHelper->isGuestCheckout()
+&& $otpHelper->isEnableAtLogin() && !$isCheckoutPage) {?>
+<div id="default-recaptcha-container"></div>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+    apiKey: "<?= /* @noEscape */ $otpHelper->getFirebaseConfigValue("firebase_apikey"); ?>",
+    authDomain: "<?= /* @noEscape */ $otpHelper->getFirebaseConfigValue("firebase_authDomain"); ?>",
+    projectId: "<?= /* @noEscape */ $otpHelper->getFirebaseConfigValue("firebase_projectId"); ?>",
+    storageBucket: "<?= /* @noEscape */ $otpHelper->getFirebaseConfigValue("firebase_storageBucket"); ?>",
+    messagingSenderId: "<?= /* @noEscape */ $otpHelper->getFirebaseConfigValue("firebase_messagingSenderId"); ?>",
+    appId: "<?= /* @noEscape */ $otpHelper->getFirebaseConfigValue("firebase_appId"); ?>"
+    };
+    // Initialize Firebase
+    const defaultApp = initializeApp(firebaseConfig);
+
+    import { getAuth, RecaptchaVerifier, signInWithPhoneNumber} from
+    "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    const defaultAuth = getAuth();
+    <?= /* @noEscape */ $testModeScript ?>
+    
+    window.defaultRecaptchaVerifier = new RecaptchaVerifier('default-recaptcha-container', {
+        'size': 'invisible'
+    }, defaultAuth);
+    defaultRecaptchaVerifier.render().then((widgetId) => {
+        window.recaptchaWidgetId = widgetId;
+    });
+    window.defaultSignInSubmit = function onSignInSubmit(phoneNumber) {
+        const appVerifier = window.defaultRecaptchaVerifier;
+
+        signInWithPhoneNumber(defaultAuth, phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+                const date = new Date();
+                Object.defineProperty(window, 'otpcreatetime', {
+                    configurable: true,
+                    value: date.getTime(),
+                    writable: false
+                });
+                // SMS sent. Prompt user to type the code from the message, then sign the
+                // user in with confirmationResult.confirm(code).
+                window.confirmationResult = confirmationResult;
+            }).catch((error) => {
+            alert('OTP could not be sent. Please try again');
+            console.log(error);
+            // Error; SMS not sent
+            // ...
+            });
+    }
+
+</script>
+<?php }
+?>

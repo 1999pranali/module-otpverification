@@ -1,0 +1,47 @@
+<?php
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+
+/** @var $viewModel \Coditron\OTPVerification\ViewModel\HelperViewModel */
+$viewModel = $block->getViewModel();
+$jsonHelper = $viewModel->getSerializer();
+$otpHelper = $viewModel->helper(\Coditron\OTPVerification\Helper\Data::class);
+
+$isModuleEnable = $otpHelper->isModuleEnable();
+$otpModalConfig = $otpHelper->getOtpModalConfig();
+$enableAtRegistration = $otpHelper->isEnableAtRegistration();
+if ($otpHelper->isB2BMarketplaceModuleEnable()) {
+    $otpModalConfig['registrationUrl']= $block->getUrl('b2bmarketplace/supplier/register');
+}
+
+if ($isModuleEnable && $enableAtRegistration): ?>
+    <div class="otpLoader">
+    </div>
+    <div data-mage-init='{
+            "verifyOtp": <?= /* @noEscape */ $jsonHelper->serialize($otpModalConfig); ?>
+        }' class="otpPopupContainer">
+        <div class= "otp_popup">
+            <div class="otp_expire_message" id="otp-expire-message">
+                <?= /* @noEscape */  __('Your OTP will expire in '); ?>
+            </div>
+            <span id="otp-countdown" class="otp_countdown">
+               
+            </span>
+            <div class="otp_response"></div>
+            <div class="otp_action">
+                <input name="otp" type="password" class="user_otp" autocomplete="off">
+                <button class="submit_otp">
+                    <?= $escaper->escapeHtml($otpModalConfig['submitButtonText']); ?>
+                </button>
+            </div>
+            <div class="validate_error"></div>
+        </div>
+    </div>
+
+<?php endif; ?>

@@ -1,0 +1,26 @@
+
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+ 
+ .admin__page-nav.CT-config-tab-class._collapsed._show
+    ._collapsible
+    strong:before {
+    content: "";
+    background: url(../images/configtab/logo.png) no-repeat scroll 0 0
+        transparent;
+    width: 100%;
+    height: 26px;
+    display: inline-block;
+    vertical-align: bottom;
+    background-size: cover;
+    padding: 16px;
+}
+.admin__page-nav.CT-config-tab-class._collapsed._show ._collapsible strong {
+    font-size: 0;
+}

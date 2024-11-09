@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="otp_login_emailsettings_otp_notification" label="OTP Email at the time of New Registration" file="otp_notification.html" type="html" module="Coditron_OTPVerification" area="frontend"/>
+    <template id="otp_login_emailsettings_otp_notification_at_login" label="OTP Email at the time of Login" file="otp_notification_at_login.html" type="html" module="Coditron_OTPVerification" area="frontend"/>
+    <template id="otp_login_emailsettings_otp_notification_at_forget_password" label="OTP Email at the time of Forget Password" file="otp_notification_at_forget_password.html" type="html" module="Coditron_OTPVerification" area="frontend"/>
+</config>

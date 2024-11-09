@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="coditron" translate="label" sortOrder="10" class="CT-config-tab-class">
+            <label>coditron</label>
+        </tab>
+        <section id="otp_login" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1">
+            <label>Otp Login</label>
+            <tab>coditron</tab>
+            <resource>Coditron_OTPVerification::coditron</resource>
+            <group id="generalsettings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1">
+                <label>One Time Password</label>
+                <field id="otp_enable" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Enable Module on Frontend</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="send_otp_via" translate="label comment" sortOrder="7" type="select" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>For Create Account Send Otp Via</label>
+                    <source_model>Coditron\OTPVerification\Model\Config\Source\SendOtpVia</source_model>
+                    <comment>This setting will be applied in creating new customer acount on frontend</comment>
+                    <depends>
+                        <field id="otp_enable">1</field>
+                    </depends>
+                </field>
+                <field id="send_otp_via_for_others" translate="label comment" sortOrder="7" type="select" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>For Other Cases Send Otp Via</label>
+                    <source_model>Coditron\OTPVerification\Model\Config\Source\SendOtpViaForOthers</source_model>
+                    <comment>This setting will be applied for login and forgot passsword functionalities</comment>
+                    <depends>
+                        <field id="otp_enable">1</field>
+                    </depends>
+                </field>
+                <field id="otp_enable_registration" translate="label comment" sortOrder="2" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Need Otp Validation On New Customer Registration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="otp_enable">1</field>
+                    </depends>
+                </field>
+                <field id="otp_enable_login" translate="label comment" sortOrder="2" type="select" showInDefault="1" showInWebsite="1">
+                    <label>Need Otp Validation On Customer Login</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="otp_enable">1</field>
+                    </depends>
+                </field>
+                <field id="expiry" translate="label comment" type='text' sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>OTP Expiry</label>
+                    <validate>validate-number</validate>
+                    <comment>Set expiry time in seconds and between range (60 - 300) else automatically 60 will be taken.</comment>
+                    <depends>
+                        <field id="otp_enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="emailsettings" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1">
+                <label>Otp Email Settings</label>
+                <field id="otp_notification" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Select Otp Notification Template at time of New Registration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="otp_notification_at_login" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Select Otp Notification Template at time of Login</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

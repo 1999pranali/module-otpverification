@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="seller-login" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+       <body>
+             <referenceBlock name="seller_form_login">
+                <action method="setViewModel">
+                    <argument name="view_model" xsi:type="object">Coditron\OTPVerification\ViewModel\HelperViewModel</argument>
+                </action>
+            </referenceBlock>
+       </body>
+</page>

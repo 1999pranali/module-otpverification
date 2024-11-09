@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Coditron_OTPVerification">
+        <sequence>
+            <module name="Mageto_Customer" />
+            <module name="Mageto_Paypal" />
+            <module name="Mageto_Checkout" />
+        </sequence>
+    </module>
+</config>

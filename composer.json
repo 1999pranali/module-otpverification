@@ -1,0 +1,22 @@
+{
+    "name": "coditron-technologies/module-otpverification",
+    "description": "Email Otp Verification extension developed Coditron team...",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Coditron Technologies",
+            "email": "contact@coditron.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Coditron\\OTPVerification\\": ""
+        }
+    }
+}

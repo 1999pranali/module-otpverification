@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Coditron_OTPVerification::otplogin" title="OTP Login" translate="title" module="Coditron_OTPVerification" sortOrder="10" resource="Coditron_OTPVerification::otplogin"/>
+        <add id="Coditron_OTPVerification::config_otp" title="OTP Configuration Settings" translate="title" parent="Coditron_OTPVerification::otplogin" module="Coditron_OTPVerification" sortOrder="100" action="adminhtml/system_config/edit/section/otp_login" resource="Coditron_OTPVerification::config_otp"/>
+    </menu>
+</config>

@@ -1,0 +1,24 @@
+<?php
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+
+$url = $block->getLogoUrl();
+if (!empty($url)) {
+    ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag(
+        'style',
+        [],
+        '.admin__menu .item-firebaselogin>a:before{content: "" !important;background:url("'.$url.'") 
+    no-repeat 50% 50%;opacity: 0.5;} .admin__menu .item-firebaselogin:hover>a:before {opacity: 1;} 
+    .admin__menu .item-firebaselogin._active>a:before {opacity: 1;}',
+        false
+    ); ?>
+    <?php
+}
+?>

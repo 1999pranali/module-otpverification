@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Coditron_OTPVerification::css/configtab.css"/>
+    </head>
+     <body>
+        <referenceContainer name="content">
+            <block class="Coditron\OTPVerification\Block\Adminhtml\Logo" name="firebase_otp_logo" template="Coditron_OTPVerification::logo.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

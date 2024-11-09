@@ -1,0 +1,16 @@
+{
+    "CT_otp": {
+        "column": {
+            "entity_id": true,
+            "email": true,
+            "otp": true,
+            "created_at": true
+        },
+        "index": {
+            "CT_OTP_EMAIL": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

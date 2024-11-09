@@ -1,0 +1,82 @@
+<?php
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+?>
+
+<script type="text/x-magento-template" id="otpModalPopupTemplate">
+    <div class="otpModalContainer display-none">
+        <div class="otpPopup">
+            <div class="guestDetailsContainer display-none">
+                <div class="guestDetailsContainer-form-container">
+                    <form class="guestDetailsContainer-form" novalidate="novalidate">
+                        <div class="addon">
+                            <div class="guestDetailsContainer-form-group">
+                                <label for="guestDetailsContainer-telephone">Telephone</label>
+                                <input id="guestDetailsContainer-telephone"
+                                       type="text"
+                                       autocomplete="off"
+                                       name="guestDetailsContainer-telephone"
+                                       class="guestDetailsContainer-telephone guestDetailsContainer-form-control"
+                                       data-mage-init='{"mage/trim-input":{}}'>
+                            </div>
+                        </div>
+                        <div class="addon">
+                            <div class="guestDetailsContainer-form-group">
+                                <label for="guestDetailsContainer-emailAddress">Email</label>
+                                <input name="guestDetailsContainer-emailAddress"
+                                       class="guestDetailsContainer-emailAddress
+                                       guestDetailsContainer-form-control"
+                                       id="guestDetailsContainer-emailAddress"
+                                       type="email"
+                                       autocomplete="off"
+                                       required="true"
+                                       data-mage-init='{"mage/trim-input":{}}'>
+                            </div>
+                        </div>
+                        <div class="addon">
+                            <div class="guestDetailsContainer-form-group">
+                                <button class="guestDetailsContainer-submitBtn">
+                            </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="guestDetailsContainer-validationError display-none"></div>
+                </div>
+            </div>
+            <div class="otpContainer display-none">
+                <!-- <div class='otpContainer-expireMessage'>
+                </div> -->
+                <div class="otp_expire_message" id="otp-expire-message">
+                    <?= /* @noEscape */  __('Your OTP will expire in '); ?>
+                </div>
+                <span id="otp-countdown" class="otp_countdown">
+                   
+                </span>
+                <div class="otpContainer-responseMessage"></div>
+                <div class="otpContainer-form-container">
+                    <form class="otpContainer-form" novalidate="novalidate">
+                        <div class="addon">
+                            <input name="otpContainer-input"
+                                   class="otpContainer-input"
+                                   type="password"
+                                   class="otpInput"
+                                   autocomplete="off"
+                                   data-mage-init='{"mage/trim-input":{}}'
+                                   data-validate="{required:true, 'validate-number':true}">
+                            <button class="otpContainer-submitBtn">
+                            </button>
+                        </div>
+                    </form>
+                    <div class="otpContainer-validationError display-none"></div>
+                </div>
+                <div id="recaptcha-container"></div>
+            </div>
+        </div>
+    </div>
+</script>

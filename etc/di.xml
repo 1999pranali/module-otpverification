@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Coditron\OTPVerification\Api\Data\OtpInterface" type="Coditron\OTPVerification\Model\Otp" />
+    <preference for="Coditron\OTPVerification\Api\OtpRepositoryInterface" type="Coditron\OTPVerification\Model\OtpRepository" />
+    <preference for="Magento\Customer\Block\Account\AuthenticationPopup" type="Coditron\OTPVerification\Block\Account\AuthenticationPopup" />
+
+    <type name="Magento\Customer\Block\Form\Login">
+        <plugin name="login_form_template" type="Coditron\OTPVerification\Block\Customer\Plugin\LoginFormTemplate" />
+    </type>
+    <type name="Coditron\OTPVerification\Model\Customer\Plugin\LoginAjax">
+        <arguments>
+            <argument name="session" xsi:type="object">Magento\Customer\Model\Session</argument>
+        </arguments>
+    </type>
+     <type name="Magento\Customer\Model\AccountManagement">
+        <plugin name="Check_email_aviablity" type="Coditron\OTPVerification\Plugin\CheckAvailbilty" sortOrder="10" disabled="false"  />
+    </type>
+</config>

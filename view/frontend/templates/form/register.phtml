@@ -1,0 +1,70 @@
+<?php
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+/** @var \Magento\Customer\Block\Form\Register $block */
+?>
+<?php /* Extensions placeholder */
+
+/** @var $viewModel \Coditron\OTPVerification\ViewModel\HelperViewModel */
+$viewModel = $block->getViewModel();
+$jsonHelper = $viewModel->getSerializer();
+$otpHelper = $viewModel->helper(\Coditron\OTPVerification\Helper\Data::class);
+
+$countries = $otpHelper->getCountries();
+$isMobileOtpEnable = $otpHelper->isModuleEnable();
+
+$enableAtRegistration = $otpHelper->isEnableAtRegistration();
+$otpModalConfig = $otpHelper->getOtpModalConfig();
+$testModeScript = "";
+if ($otpHelper->getTestModeStatus()) {
+    $testModeScript = "auth.settings.appVerificationDisabledForTesting = true;";
+}
+?>
+<?php
+if ($isMobileOtpEnable) {
+    ?>
+    <div class="field" id="otp-div">
+        <input type="hidden" name="mobile_enbled" id="config"
+            value="<?= /* @noEscape */$isMobileOtpEnable;?>">
+        <!-- <label for="country" class="label"><span><?= $escaper->escapeHtml(__('Dialing Code')) ?></span></label>
+        <div class="control">
+            <select id="country_codes" name="region">
+                <?php foreach ($countries as $country): ?>
+                    <?php $callingCode = '+' . $country['callingCode']?>
+                    <option value="<?=$escaper->escapeHtmlAttr($callingCode)?>">
+                        <?= $escaper->escapeHtml(__($country['name']) . ' (' . $callingCode . ')')?>
+                    </option>
+                <?php endforeach;?>
+            </select>
+        </div><br>
+        <label for="mobile" type="number" class="label">
+            <span><?= $escaper->escapeHtml(__('Default Phone Number')) ?></span>
+        </label>
+        <div class="control">
+            <input type="text" name="mobile" id="mobile"
+                value="<?= $escaper->escapeHtmlAttr($block->getFormData()->getEmail())?>"
+                title="<?= $escaper->escapeHtmlAttr(__('Mobile'))?>" class="input-text"
+                data-mage-init='{"mage/trim-input":{}}'>
+        </div> -->
+    </div>
+    <div class="primary">
+        <button class="action primary display-none" id="loginThroughPhone">Create an Account</button>
+    </div>
+    <p id="demo"></p>
+    <div id="recaptcha-container"></div>
+    <?php
+}
+?>
+<script>
+require(['jquery'], function ($){
+    $(document).ready(function () {
+        $('#email_address').parents('div.field').after($('#otp-div'));
+    });
+});
+</script>

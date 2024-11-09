@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Coditron
+ *
+ * @category  Coditron
+ * @package   Coditron_OTPVerification
+ * @author    Coditron
+ * @copyright Copyright (c) Coditron (https://coditron.com)
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <otp_login>
+            <generalsettings>
+                <otp_enable>1</otp_enable>
+                <otp_enable_registration>1</otp_enable_registration>
+                <forgot_password>1</forgot_password>
+                <expiry>60</expiry>
+                <send_otp_via>email</send_otp_via>
+                <send_otp_via_for_others>email</send_otp_via_for_others>
+            </generalsettings>
+            <emailsettings>
+                <otp_notification>firebase_otp_emailsettings_otp_notification</otp_notification>
+                <otp_notification_at_login>firebase_otp_emailsettings_otp_notification_at_login</otp_notification_at_login>
+                <firebase_otp_emailsettings_otp_notification_at_forget_password>otp_notification_at_forget_password</firebase_otp_emailsettings_otp_notification_at_forget_password>
+            </emailsettings>
+        </otp_login>
+    </default>
+</config>
